@@ -1,0 +1,62 @@
+import { Page, Locator, expect } from '@playwright/test';
+
+
+export class InternetPage {
+  readonly page: Page;
+
+
+  constructor(page: Page) {
+    this.page = page;
+  }
+
+
+  async navigateTo(path: string) {
+    await this.page.goto(`https://the-internet.herokuapp.com/${path}`);
+  }
+
+
+  async triggerAlert() {
+    this.page.once('dialog', dialog => dialog.accept());
+    await this.page.getByRole('button', { name: 'Click for JS Alert' }).click();
+  }
+  async tickFirstCheckbox() {
+    const firstCheckbox = this.page.locator('input[type="checkbox"]').first();
+   
+    // Explicitly wait for the element to be ready to be interacted with
+    await firstCheckbox.waitFor({ state: 'visible', timeout: 5000 });
+    await firstCheckbox.check();
+  }
+  async untickSecondCheckbox() {
+    // Find the second checkbox and uncheck it
+    const secondCheckbox = this.page.locator('input[type="checkbox"]').last();
+    await secondCheckbox.uncheck();
+  }
+
+
+  // ENSURE THIS IS INSIDE THE CLASS BRACKETS
+  async handleNewTab() {
+    const pagePromise = this.page.context().waitForEvent('page');
+    await this.page.getByText('Click Here').click();
+    const newPage = await pagePromise;
+    await newPage.waitForLoadState();
+    return newPage;
+  }
+
+
+  async typeNumber(value: string) {
+    const inputField = this.page.locator('input[type="number"]');
+    // .fill() automatically clears whatever was there before and types the new value
+    await inputField.fill(value);
+  }
+  async waitForDynamicElement() {
+    // This button starts a 5-second loading process
+    await this.page.getByRole('button', { name: 'Start' }).click();
+   
+    // We wait for the 'Hello World!' text to appear
+    // Playwright's expect() has a built-in 5s wait,
+    // but we can increase it if the site is slow.
+    const helloText = this.page.locator('#finish h4');
+    await expect(helloText).toBeVisible({ timeout: 10000 });
+  }
+} // <--- THIS bracket must be at the very end of the file
+
