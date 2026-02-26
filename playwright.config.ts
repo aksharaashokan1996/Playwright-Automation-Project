@@ -35,7 +35,6 @@ export default defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
     baseURL: 'https://the-internet.herokuapp.com',
    
-
     /* See the browser while testing */
     headless: false, 
 
