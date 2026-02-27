@@ -37,7 +37,7 @@ export default defineConfig({
     baseURL: 'https://the-internet.herokuapp.com',
    
     /* See the browser while testing */
-    headless: false, 
+    headless: process.env.CI ? true : true, 
 
     
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
