@@ -38,6 +38,9 @@ export default defineConfig({
    
     /* See the browser while testing */
     headless: process.env.CI ? true : true, 
+    viewport: { width: 1280, height: 720 },
+    ignoreHTTPSErrors: true,
+  
 
     
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
