@@ -10,7 +10,13 @@ test.describe('Day 12: Visual Regression Testing', () => {
             maxDiffPixels: 100, // Ignores minor glitches
             threshold: 0.2      // 0.2 is a good balance for web UI
         });
+        // in your day9.spec.ts (or day12)
+await expect(page).toHaveScreenshot('login-page.png', { 
+    maxDiffPixelRatio: 0.2, // Allow 20% of pixels to be different
+    animations: 'disabled'   // Ensure no blinking cursors mess it up
+});
     });
+    
 
 });
 

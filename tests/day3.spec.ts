@@ -18,7 +18,7 @@ test('Day 3: Dynamic Elements and Filtering', async ({ page }) => {
 
 
     // 3. Dynamic Action: Delete 'Take a break'
-    await todoPage.deleteTodo('Take a break');
+    await todoPage.deleteTodo('Takes a break');
 
 
     // 4. Verification
