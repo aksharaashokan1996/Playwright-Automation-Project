@@ -7,7 +7,7 @@ test.describe('Day 14: Data-Driven Login Tests', () => {
     // 2. Loop through each object in the JSON array
     for (const user of testData) {
         
-        test(`Login Attempt for: ${user.desc}`, async ({ page }) => {
+        test(`@smoke Login Attempt for: ${user.desc}`, async ({ page }) => {
             await page.goto('https://the-internet.herokuapp.com/login');
             
             await page.locator('#username').fill(user.username);
