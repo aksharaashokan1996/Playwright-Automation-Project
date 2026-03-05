@@ -3,7 +3,7 @@ import { test as setup, expect } from '@playwright/test';
 const authFile = 'playwright/.auth/user.json';
 
 setup('authenticate', async ({ page }) => {
-  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+  await page.goto('/web/index.php/auth/login');
 
   await page.locator('input[name="username"]').fill('Admin');
   await page.locator('input[name="password"]').fill('admin123');

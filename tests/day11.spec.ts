@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 test.use({ storageState: { cookies: [], origins: [] } });
 
 test('Codegen Test', async ({ page }) => {
-  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+  await page.goto('/web/index.php/auth/login');
   
   // Now that cookies are cleared, the login page will actually show up
   await page.locator('input[name="username"]').fill('Admin');
