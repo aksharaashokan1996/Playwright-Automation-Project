@@ -8,6 +8,8 @@ test('Codegen Test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Password' }).click();
   await page.getByRole('textbox', { name: 'Password' }).fill('admin123');
   await page.getByRole('button', { name: 'Login' }).click();
+  // Save the storage state (cookies and local storage) to a JSON file
+  await page.context().storageState({ path: 'playwright/.auth/user.json' });
   await page.getByRole('link', { name: 'Admin' }).click();
   await page.getByRole('button', { name: ' Add' }).click();
   await page.locator('div').filter({ hasText: /^-- Select --$/ }).nth(2).click();
