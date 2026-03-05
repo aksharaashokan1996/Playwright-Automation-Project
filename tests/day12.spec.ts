@@ -6,5 +6,5 @@ test('Check Admin Panel without logging in', async ({ page }) => {
     
     // If the state worked, you won't see the login page!
     await expect(page).toHaveURL(/admin/);
-    await expect(page.getByText('User Management')).toBeVisible();
-});
+// This targets the heading specifically, ignoring the menu tab
+await expect(page.getByRole('heading', { name: 'User Management' })).toBeVisible();});

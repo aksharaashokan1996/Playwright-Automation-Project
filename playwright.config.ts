@@ -6,6 +6,8 @@ fullyParallel: true,
 reporter: 'html',
 
 use: {
+    // 1. This uses your "Badge" (session) automatically for every test
+    storageState: 'playwright/.auth/user.json',
 trace: 'on',
 screenshot: 'only-on-failure',
 video: 'retain-on-failure',
