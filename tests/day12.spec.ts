@@ -7,4 +7,5 @@ test('Check Admin Panel without logging in', async ({ page }) => {
     // If the state worked, you won't see the login page!
     await expect(page).toHaveURL(/admin/);
 // This targets the heading specifically, ignoring the menu tab
-await expect(page.locator('.oxd-topbar-header-breadcrumb h6')).toHaveText('User Management', { timeout: 15000 })});
+// Target the specific 'level' breadcrumb to avoid strict mode error
+await expect(page.locator('.oxd-topbar-header-breadcrumb-level')).toHaveText('User Management', { timeout: 15000 })});
